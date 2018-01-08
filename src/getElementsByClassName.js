@@ -7,4 +7,25 @@
 var getElementsByClassName = function(className
 ) {
   // your code here
+  var elements = [];
+  var getElementsByClass = function(arg) {
+  	if ( arg !== undefined) {
+  		if (arg.length) {
+  		    arg.forEach(x => {
+                if (x.classList !== undefined) {
+            	    getElementsByClass(x);
+            	}
+            });
+  		} else {
+  			if (arg.classList) {
+  				if (arg.classList.contains(className)) {
+  					elements.push(arg);
+  				}
+  				getElementsByClass(arg.childNodes);
+  			}
+  		}
+  	}
+  };
+  getElementsByClass(document.body);
+  return elements;
 };
